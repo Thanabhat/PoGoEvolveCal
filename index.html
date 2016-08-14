@@ -6,9 +6,10 @@
     <script src="app.js"></script>
   </head>
   <body ng-controller="AppController as app">
+  <h2>How many pokemon you can evolve from current candy?</h2>
 	<input type="text" value="Name" size="12" disabled>
-	<input type="text" value="Required" style="width: 45px;" disabled>
-	<input type="text" value="Has" style="width: 45px;" disabled>
+	<input type="text" value="Require" style="width: 45px;" disabled>
+	<input type="text" value="#Candy" style="width: 45px;" disabled>
 	<input type="text" value="#Evolve" size="4" disabled>
   	<div ng-repeat="monObj in app.monObjList">
 		<input type="text" ng-model="monObj.name" size="12" select-on-click>
