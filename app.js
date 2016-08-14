@@ -3,11 +3,11 @@ angular.module('evoApp', [])
         this.numMon = 10;
         this.monObjList = [];
         this.sum = 0;
-        this.addMon = function() {
+        this.addMon = function(name, requiredCandy) {
             this.monObjList.push({
-                name: 'Pidgey',
+                name: name || 'XXX',
                 hasCandy: 0,
-                requiredCandy: 12,
+                requiredCandy: requiredCandy || 12,
                 countEvolve: 0
             });
         };
@@ -32,7 +32,11 @@ angular.module('evoApp', [])
                 this.sum += this.monObjList[i].countEvolve;
             }
         };
-        for (var i = 0; i < this.numMon; i++) {
+        this.addMon('Caterpie', 12);
+        this.addMon('Weedle', 12);
+        this.addMon('Pidgey', 12);
+        this.addMon('Rattata', 25);
+        for (var i = this.monObjList.length; i < this.numMon; i++) {
             this.addMon();
         }
     })
