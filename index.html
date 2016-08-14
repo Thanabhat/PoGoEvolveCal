@@ -13,8 +13,8 @@
 	<input type="text" value="#Evolve" size="4" disabled>
   	<div ng-repeat="monObj in app.monObjList">
 		<input type="text" ng-model="monObj.name" size="12" select-on-click>
-		<input type="number" ng-model="monObj.requiredCandy" ng-change="app.cal(monObj)" style="width: 45px;" select-on-click>
-		<input type="number" ng-model="monObj.hasCandy" ng-change="app.cal(monObj)" style="width: 45px;" select-on-click>
+		<input ng-attr-type="{{app.isMobile?'text':'number'}}"  ng-model="monObj.requiredCandy" ng-change="app.cal(monObj)" style="width: 45px;" select-on-click>
+		<input ng-attr-type="{{app.isMobile?'text':'number'}}" ng-model="monObj.hasCandy" ng-change="app.cal(monObj)" style="width: 45px;" select-on-click>
 		<input type="text" ng-model="monObj.countEvolve" size="4" disabled="">
   	</div>
   	<br>
