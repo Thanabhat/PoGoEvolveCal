@@ -7,13 +7,13 @@
   </head>
   <body ng-controller="AppController as app">
 	<input type="text" value="Name" size="12" disabled>
-	<input type="text" value="Required" size="4" disabled>
-	<input type="text" value="Has" size="4" disabled>
+	<input type="text" value="Required" style="width: 45px;" disabled>
+	<input type="text" value="Has" style="width: 45px;" disabled>
 	<input type="text" value="#Evolve" size="4" disabled>
   	<div ng-repeat="monObj in app.monObjList">
 		<input type="text" ng-model="monObj.name" size="12" select-on-click>
-		<input type="text" ng-model="monObj.requiredCandy" ng-change="app.cal(monObj)" size="4" select-on-click>
-		<input type="text" ng-model="monObj.hasCandy" ng-change="app.cal(monObj)" size="4" select-on-click>
+		<input type="number" ng-model="monObj.requiredCandy" ng-change="app.cal(monObj)" style="width: 45px;" select-on-click>
+		<input type="number" ng-model="monObj.hasCandy" ng-change="app.cal(monObj)" style="width: 45px;" select-on-click>
 		<input type="text" ng-model="monObj.countEvolve" size="4" disabled="">
   	</div>
   	<br>
