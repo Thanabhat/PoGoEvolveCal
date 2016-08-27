@@ -1,0 +1,39 @@
+body, html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+#inner-container {
+	background-color: white;
+	height: 100%;
+	margin: 15px;
+}
+
+.input-container {
+	padding: 3px;
+}
+
+@media only screen and (max-width : 767px) {
+	* {
+		font-size: 24px;
+	}
+}
+
+@media only screen and (min-width : 768px)  and (max-width: 1199px) {
+	* {
+		font-size: 24px;
+	}
+}
+
+@media only screen and (min-width : 1200px) {
+	* {
+		font-size: 24px;
+	}
+	#inner-container {
+		max-width: 1200px;
+	}
+}
