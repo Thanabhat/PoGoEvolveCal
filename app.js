@@ -1,6 +1,11 @@
-angular.module('evoApp', [])
-    .controller('AppController', function(storage) {
+angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
+    .controller('AppController', function(storage, pokemons) {
         this.candyOptions = [12, 25, 50, 100, 400];
+        this.pokemons = pokemons;
+        this.candyMaps = {};
+        for (var i = 0; i < this.pokemons.length; i++) {
+            this.candyMaps[this.pokemons[i].name] = this.pokemons[i].candy;
+        }
 
         this.model = storage.loadModel();
 
@@ -17,11 +22,11 @@ angular.module('evoApp', [])
                 }
             }
             monObj.countEvolve = sol;
-            monObj.resultText = 'Can evolve upto ' + (monObj.countEvolve);
+            monObj.resultText = 'Evolve ' + (monObj.countEvolve);
             if (monObj.hasPokemon >= 0) {
                 if (monObj.hasPokemon < monObj.countEvolve) {
                     monObj.countEvolve = monObj.hasPokemon;
-                    monObj.resultText = 'Can evolve upto ' + (monObj.countEvolve);
+                    monObj.resultText = 'Evolve ' + (monObj.countEvolve);
                 } else {
                     var transfer = 0;
                     while (monObj.hasPokemon - sol - transfer > 1) {
@@ -32,7 +37,7 @@ angular.module('evoApp', [])
                             remain -= monObj.requiredCandy;
                             remain++;
                             monObj.countEvolve = sol;
-                            monObj.resultText = 'Transfer ' + (transfer) + ' to evolve ' + (monObj.countEvolve);
+                            monObj.resultText = 'Trf:' + (transfer) + ' -> Evl:' + (monObj.countEvolve);
                         }
                     }
                 }
@@ -44,6 +49,12 @@ angular.module('evoApp', [])
             this.model.sum = 0;
             for (var i = 0; i < this.model.monObjList.length; i++) {
                 this.model.sum += +this.model.monObjList[i].countEvolve;
+            }
+        };
+        this.onPokemonSelect = function(monObj) {
+            if (this.candyMaps[monObj.name]) {
+                monObj.requiredCandy = this.candyMaps[monObj.name];
+                this.cal(monObj);
             }
         };
     })
@@ -60,7 +71,7 @@ angular.module('evoApp', [])
             }
         };
     }]).factory('storage', function() {
-        var VERSION = 1;
+        var VERSION = 2;
         return {
             saveModel: function(model) {
                 if (typeof localStorage !== 'undefined') {
