@@ -40,7 +40,11 @@
           <input type="text" ng-model="monObj.resultText" style="width: 100%;" disabled="" class="form-control">
         </div>
       </div>
-      Sum: <input type="text" ng-model="app.model.sum" disabled class="form-control">
+      <div id="sum-container">
+        <span>Sum:</span>
+        <input id="sum-textbox" type="text" ng-model="app.model.sum" disabled class="form-control">
+      </div>
+      <button id="reset-button" type="button" class="btn btn-default" ng-click="app.resetModel()">Reset</button>
       <hr>
       <span>* Note: 'Collected Pokemon' is used for calculate the maximum limit of pokemon you can evolve, leave as -1 to not specify. </span>
       <br>

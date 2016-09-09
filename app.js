@@ -1,5 +1,5 @@
 angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
-    .controller('AppController', function(storage, pokemons) {
+    .controller('AppController', function(ModelService, pokemons) {
         this.candyOptions = [12, 25, 50, 100, 400];
         this.pokemons = pokemons;
         this.candyMaps = {};
@@ -7,7 +7,7 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
             this.candyMaps[this.pokemons[i].name] = this.pokemons[i].candy;
         }
 
-        this.model = storage.loadModel();
+        this.model = ModelService.loadModel();
 
         this.cal = function(monObj) {
             var sol = 0;
@@ -43,7 +43,7 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
                 }
             }
             this.updateSum();
-            storage.saveModel(this.model);
+            ModelService.saveModel(this.model);
         };
         this.updateSum = function() {
             this.model.sum = 0;
@@ -57,6 +57,10 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
                 this.cal(monObj);
             }
         };
+        this.resetModel = function() {
+            this.model = ModelService.createNewModel();
+            ModelService.saveModel(this.model);
+        }
     })
     .directive('selectOnClick', ['$window', function($window) {
         return {
@@ -70,7 +74,7 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
                 });
             }
         };
-    }]).factory('storage', function() {
+    }]).factory('ModelService', function() {
         var VERSION = 2;
         return {
             saveModel: function(model) {
@@ -88,20 +92,7 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
                             return model;
                         }
                     }
-                    //default model
-                    var numMon = 10;
-                    var model = {
-                        monObjList: [],
-                        sum: 0
-                    };
-                    this.addMon(model, 'Caterpie', 12);
-                    this.addMon(model, 'Weedle', 12);
-                    this.addMon(model, 'Pidgey', 12);
-                    this.addMon(model, 'Rattata', 25);
-                    for (var i = model.monObjList.length; i < numMon; i++) {
-                        this.addMon(model);
-                    }
-                    return model;
+                    return this.createNewModel();
                 }
             },
             addMon: function(model, name, requiredCandy) {
@@ -113,6 +104,22 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
                     countEvolve: 0,
                     resultText: ''
                 })
+            },
+            createNewModel: function() {
+                //default model
+                var numMon = 10;
+                var model = {
+                    monObjList: [],
+                    sum: 0
+                };
+                this.addMon(model, 'Caterpie', 12);
+                this.addMon(model, 'Weedle', 12);
+                this.addMon(model, 'Pidgey', 12);
+                this.addMon(model, 'Rattata', 25);
+                for (var i = model.monObjList.length; i < numMon; i++) {
+                    this.addMon(model);
+                }
+                return model;
             }
         };
     });

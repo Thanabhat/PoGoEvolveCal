@@ -45,3 +45,15 @@ body {
 select.form-control {
     padding: 1px 12px !important;
 }
+
+#reset-button {
+	margin: 5px 0px;
+}
+
+#sum-container {
+	display: flex;
+}
+
+#sum-textbox {
+	max-width: 200px;
+}
