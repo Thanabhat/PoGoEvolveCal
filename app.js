@@ -11,7 +11,7 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
 
         this.cal = function(monObj) {
             var sol = 0;
-            var remain = monObj.hasCandy;
+            var remain = +monObj.hasCandy;
             while (true) {
                 if (remain >= monObj.requiredCandy) {
                     sol++;
@@ -31,7 +31,11 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
                     var transfer = 0;
                     while (monObj.hasPokemon - sol - transfer > 1) {
                         transfer++;
-                        remain++;
+                        if (this.model.isHalloween) {
+                            remain += 2;
+                        } else {
+                            remain++;
+                        }
                         if (remain >= monObj.requiredCandy) {
                             sol++;
                             remain -= monObj.requiredCandy;
@@ -57,10 +61,19 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
                 this.cal(monObj);
             }
         };
+        this.onApplyHalloweenClick = function($event) {
+            $event.target.blur();
+            this.recalculateAll();
+        };
         this.resetModel = function() {
             this.model = ModelService.createNewModel();
             ModelService.saveModel(this.model);
-        }
+        };
+        this.recalculateAll = function() {
+            for (var i = 0; i < this.model.monObjList.length; i++) {
+                this.cal(this.model.monObjList[i]);
+            }
+        };
     })
     .directive('selectOnClick', ['$window', function($window) {
         return {
@@ -75,7 +88,7 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
             }
         };
     }]).factory('ModelService', function() {
-        var VERSION = 2;
+        var VERSION = 3;
         return {
             saveModel: function(model) {
                 if (typeof localStorage !== 'undefined') {
@@ -110,7 +123,8 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
                 var numMon = 10;
                 var model = {
                     monObjList: [],
-                    sum: 0
+                    sum: 0,
+                    isHalloween: true
                 };
                 this.addMon(model, 'Caterpie', 12);
                 this.addMon(model, 'Weedle', 12);

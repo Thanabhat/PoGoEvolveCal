@@ -15,6 +15,11 @@
     <div id="inner-container">
       <h1>How many pokemon you can evolve from collected candy?</h1>
       <hr>
+      <button type="button" class="btn btn-default" ng-model="app.model.isHalloween" ng-click="app.onApplyHalloweenClick($event)" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">
+          Apply Halloween Candy
+      </button>
+      {{app.model.isHalloween?"Get 2 candy per tranfer.":"Get 1 candy per tranfer."}}
+      <hr>
       <div class="row">
         <div class="col-sm-2">Name</div>
         <div class="col-sm-2">Candy / Pokemon</div>
@@ -27,8 +32,8 @@
         <div class="col-sm-2 input-container">
           <input type="text" ng-model="monObj.name" style="width: 100%;" select-on-click uib-typeahead="pokemon.name for pokemon in app.pokemons | filter:$viewValue | limitTo:8" typeahead-on-select="app.onPokemonSelect(monObj)" class="form-control">
         </div>
-        <div class="col-sm-2 input-container">
-          <select ng-model="monObj.requiredCandy" ng-options="candy as candy for candy in app.candyOptions" ng-change="app.cal(monObj)" style="width: 100%;" class="form-control"></select>
+        <div class="col-sm-2 input-container" style="display: flex;">
+          <span ng-bind="monObj.requiredCandy" style="width: 100%; text-align: center;"></span>
         </div>
         <div class="col-sm-2 input-container">
           <input type="text" ng-model="monObj.hasCandy" ng-change="app.cal(monObj)" style="width: 100%;" select-on-click class="form-control">
