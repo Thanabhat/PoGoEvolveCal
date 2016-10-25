@@ -57,3 +57,7 @@ select.form-control {
 #sum-textbox {
 	max-width: 200px;
 }
+
+.custom-checkbox-button.active {
+	background-color: #bbb !important;
+}
