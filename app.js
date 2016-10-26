@@ -130,6 +130,7 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
                 this.addMon(model, 'Weedle', 12);
                 this.addMon(model, 'Pidgey', 12);
                 this.addMon(model, 'Rattata', 25);
+                this.addMon(model, 'Spearow', 50);
                 for (var i = model.monObjList.length; i < numMon; i++) {
                     this.addMon(model);
                 }
