@@ -1,4 +1,4 @@
-angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
+angular.module('evoApp', ['ngAnimate', 'ui.bootstrap', 'ui.sortable'])
     .controller('AppController', function(ModelService, pokemons) {
         this.candyOptions = [12, 25, 50, 100, 400];
         this.pokemons = pokemons;
@@ -81,6 +81,11 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
             ModelService.removeMon(this.model);
             this.updateSum();
         };
+        this.sortableOptions = {
+            stop: function(e, ui) {
+                ModelService.saveModel(this.model);
+            }.bind(this)
+        };
     })
     .directive('selectOnClick', ['$window', function($window) {
         return {
@@ -95,7 +100,7 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
             }
         };
     }]).factory('ModelService', function() {
-        var VERSION = 3;
+        var VERSION = 4;
         return {
             saveModel: function(model) {
                 if (typeof localStorage !== 'undefined') {
