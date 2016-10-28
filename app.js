@@ -74,6 +74,13 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
                 this.cal(this.model.monObjList[i]);
             }
         };
+        this.addRow = function() {
+            ModelService.addMon(this.model);
+        };
+        this.removeRow = function() {
+            ModelService.removeMon(this.model);
+            this.updateSum();
+        };
     })
     .directive('selectOnClick', ['$window', function($window) {
         return {
@@ -110,13 +117,16 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap'])
             },
             addMon: function(model, name, requiredCandy) {
                 model.monObjList.push({
-                    name: name || 'XXX',
+                    name: name || 'Pidgey',
                     requiredCandy: requiredCandy || 12,
                     hasCandy: 0,
                     hasPokemon: -1,
                     countEvolve: 0,
                     resultText: ''
                 })
+            },
+            removeMon: function(model) {
+                model.monObjList.splice(-1, 1);
             },
             createNewModel: function() {
                 //default model
