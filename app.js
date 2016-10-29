@@ -79,10 +79,12 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap', 'ui.sortable'])
         };
         this.addRow = function() {
             ModelService.addMon(this.model);
+            ModelService.saveModel(this.model);
         };
         this.removeRow = function() {
             ModelService.removeMon(this.model);
             this.updateSum();
+            ModelService.saveModel(this.model);
         };
         this.sortableOptions = {
             stop: function(e, ui) {
