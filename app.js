@@ -10,6 +10,9 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap', 'ui.sortable'])
         this.model = ModelService.loadModel();
 
         this.cal = function(monObj) {
+            if (!monObj.name || !monObj.requiredCandy) {
+                return;
+            }
             var sol = 0;
             var remain = +monObj.hasCandy;
             while (true) {
@@ -122,8 +125,8 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap', 'ui.sortable'])
             },
             addMon: function(model, name, requiredCandy) {
                 model.monObjList.push({
-                    name: name || 'Pidgey',
-                    requiredCandy: requiredCandy || 12,
+                    name: name || '',
+                    requiredCandy: requiredCandy || 0,
                     hasCandy: 0,
                     hasPokemon: -1,
                     countEvolve: 0,
