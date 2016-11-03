@@ -105,7 +105,7 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap', 'ui.sortable'])
             }
         };
     }]).factory('ModelService', function() {
-        var VERSION = 4;
+        var VERSION = 5;
         return {
             saveModel: function(model) {
                 if (typeof localStorage !== 'undefined') {
@@ -144,7 +144,7 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap', 'ui.sortable'])
                 var model = {
                     monObjList: [],
                     sum: 0,
-                    isHalloween: true
+                    isHalloween: false
                 };
                 this.addMon(model, 'Caterpie', 12);
                 this.addMon(model, 'Weedle', 12);
