@@ -18,10 +18,12 @@
     <div id="inner-container">
       <h1>How many pokemon you can evolve from collected candy?</h1>
       <hr>
-      <button type="button" class="btn btn-default custom-checkbox-button" ng-model="app.model.isHalloween" ng-click="app.onApplyHalloweenClick($event)" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">
+      <div style="display: none;">
+        <button type="button" class="btn btn-default custom-checkbox-button" ng-model="app.model.isHalloween" ng-click="app.onApplyHalloweenClick($event)" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">
           Apply Halloween Candy
-      </button>
-      {{app.model.isHalloween?"Get 2 candy per tranfer.":"Get 1 candy per tranfer."}}
+        </button>
+        {{app.model.isHalloween?"Get 2 candy per tranfer.":"Get 1 candy per tranfer."}}
+      </div>
       <hr>
       <div class="row">
         <div class="col-sm-2">Name</div>
