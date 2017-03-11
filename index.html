@@ -38,7 +38,7 @@
       </div>
 
       <div ui-sortable="app.sortableOptions" ng-model="app.model.monObjList">
-        <div class="row mon-row" ng-repeat="monObj in app.model.monObjList">
+        <div class="row mon-row" ng-repeat="monObj in app.model.monObjList track by $index">
           <div class="col-sm-2 input-container">
             <input type="text" ng-model="monObj.name" style="width: 100%;" select-on-click uib-typeahead="pokemon.name for pokemon in app.pokemons | filter:$viewValue | limitTo:8" typeahead-on-select="app.onPokemonSelect(monObj)" class="form-control" placeholder="Pidgey">
           </div>
