@@ -140,7 +140,7 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap', 'ui.sortable'])
             },
             createNewModel: function() {
                 //default model
-                var numMon = 10;
+                var numMon = 13;
                 var model = {
                     monObjList: [],
                     sum: 0,
@@ -151,6 +151,13 @@ angular.module('evoApp', ['ngAnimate', 'ui.bootstrap', 'ui.sortable'])
                 this.addMon(model, 'Pidgey', 12);
                 this.addMon(model, 'Rattata', 25);
                 this.addMon(model, 'Spearow', 50);
+                this.addMon(model, 'Sentret', 25);
+                this.addMon(model, 'Hoothoot', 50);
+                this.addMon(model, 'Ledyba', 25);
+                this.addMon(model, 'Chinchou', 50);
+                this.addMon(model, 'Natu', 50);
+                this.addMon(model, 'Marill', 25);
+                this.addMon(model, 'Wooper', 50);
                 for (var i = model.monObjList.length; i < numMon; i++) {
                     this.addMon(model);
                 }
